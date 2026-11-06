@@ -1,9 +1,19 @@
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 function App() {
   return (
     <>
-     <div className="min-h-screen bg-background p-4 text-foreground">
-        <h1 className="font-heading text-3x1 font-bold text-primary">Hello World</h1>
+
+     <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <Header/>
+      <main className="flex-1 p-4">
+        <p>Painel em construção</p>
+      </main>
+
+        <Footer/>
      </div>
+
     </>
   )
 }
