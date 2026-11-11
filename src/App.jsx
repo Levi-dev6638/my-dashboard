@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Menu from './components/Menu';
 import SummaryCard from './components/SummaryCard';
+import Panel from './components/Panel'
 const areaClass =
   'min-h-32 rounded-xl border-2 border-dashed border-border bg-surface p-4 text-muted';
 function App() {
@@ -16,21 +17,22 @@ function App() {
         >
           <Menu />
 
-          <section id="summary" className={`${areaClass} md:col-span-2`}>
+          <Panel id="summary" title="Resumo" className="md:col-span-2">
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+
               <SummaryCard title="Jogos" value={42} icon="🎮" />
               <SummaryCard title="Horas jogadas" value={318} icon="⏱️" />
               <SummaryCard title="Zerados" value={17} icon="🏆" isHighlighted />
               <SummaryCard title="Nota média" value="8,6" />
             </div>
-          </section>
-          
-          <section id="list" className={`${areaClass} md:min-h-80`}>
+          </Panel>
+
+          <Panel id="list" title="List" className= "md:min-h-80">
             Lista
-          </section>
-          <section id="chart" className={`${areaClass} md:min-h-80`}>
+          </Panel>
+          <Panel id="chart" title="Grafico" className= "md:min-h-80">
             Gráfico
-          </section>
+          </Panel>
           <p>Painel em construção</p>
         </main>
 
