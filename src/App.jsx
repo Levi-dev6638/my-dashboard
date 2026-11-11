@@ -4,6 +4,7 @@ import Menu from './components/Menu';
 import SummaryCard from './components/SummaryCard';
 import Panel from './components/Panel';
 import InfoRow from './components/InfoRow';
+import StatusBadge  from './components/StatusBadge';
 const areaClass =
   'min-h-32 rounded-xl border-2 border-dashed border-border bg-surface p-4 text-muted';
 function App() {
@@ -24,18 +25,23 @@ function App() {
             className="md:col-span-2"
           >
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-              <SummaryCard title="Receitas Totais" value={42} />
-              <SummaryCard title="Horas jogadas" value={318} icon="⏱️" />
-              <SummaryCard title="Zerados" value={17} icon="🏆" isHighlighted />
-              <SummaryCard title="Nota média" value="8,6" />
+              <SummaryCard title="Receitas Totais" value={1267} />
+              <SummaryCard title="Gastos fixos" value={767} />
+              <SummaryCard
+                title="Cartao de Crédito"
+                value={317}
+                isHighlighted
+              />
+              <SummaryCard title="Valor Final" value="00,00" />
             </div>
           </Panel>
           <Panel id=" highlight" title="Valor atual" className="md:col-span-2">
-            <h3 className="font-heading text-xl font-bold">Sálario</h3>
-            <p className="mt-1 text-muted">
-              {' '}
-              Sálario base recebido todo dia primeiro
-            </p>
+            <div className="flex flex-wrap items-center gap-2">
+              <h3 className="font-heading text-xl font-bold">Hollow Knight</h3>
+              <StatusBadge label="Jogando" isActive />
+              <StatusBadge label="Single player" />
+            </div>
+            <p className='mt-1 text-muted'> Salario recebido todos os meses</p>
             <div className="mt-4 grid gap-x-6 md:grid-cols-2">
               <InfoRow label="Plataforma" value="PC" />
               <InfoRow label="Gênero" value="Metroidvania" />
