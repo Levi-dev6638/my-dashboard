@@ -4,7 +4,8 @@ import Menu from './components/Menu';
 import SummaryCard from './components/SummaryCard';
 import Panel from './components/Panel';
 import InfoRow from './components/InfoRow';
-import StatusBadge  from './components/StatusBadge';
+import StatusBadge from './components/StatusBadge';
+import DetailsToggle from './components/DatailsToggle';
 const areaClass =
   'min-h-32 rounded-xl border-2 border-dashed border-border bg-surface p-4 text-muted';
 function App() {
@@ -41,13 +42,16 @@ function App() {
               <StatusBadge label="Jogando" isActive />
               <StatusBadge label="Single player" />
             </div>
-            <p className='mt-1 text-muted'> Salario recebido todos os meses</p>
+            <p className="mt-1 text-muted"> Salario recebido todos os meses</p>
             <div className="mt-4 grid gap-x-6 md:grid-cols-2">
               <InfoRow label="Plataforma" value="PC" />
               <InfoRow label="Gênero" value="Metroidvania" />
               <InfoRow label="Horas jogadas" value="38 h" />
               <InfoRow label="Progresso" value="72%" />
             </div>
+            <DetailsToggle>
+              <p>Falta o último chefe e 3 áreas do mapa.</p>
+            </DetailsToggle>
           </Panel>
           <Panel id="list" title="Maiores gastos" className="md:min-h-80">
             Maiores gastos
