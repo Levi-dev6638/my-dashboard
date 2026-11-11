@@ -1,17 +1,17 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 const linkClass =
-  'block rounded-lg px-3 py-2 hover:bg-background hover:text-primary'
+  'block rounded-lg px-3 py-2 hover:bg-background hover:text-primary';
 
 function Menu() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   function toggleMenu() {
-    setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
   }
 
   function closeMenu() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   return (
@@ -19,7 +19,7 @@ function Menu() {
       id="menu"
       aria-label="Menu principal"
       className="rounded-xl border border-border bg-surface p-3
-        md:col-span-2 xl:col-span-1 xl:row-span-2"
+        md:col-span-2 xl:col-span-1 xl:row-span-3"
     >
       <button
         type="button"
@@ -38,17 +38,28 @@ function Menu() {
         className={`mt-3 flex-col gap-1 xl:mt-0 xl:flex ${isOpen ? 'flex' : 'hidden'}`}
       >
         <li>
-          <a href="#summary" onClick={closeMenu} className={linkClass}>Resumo</a>
+          <a href="#summary" onClick={closeMenu} className={linkClass}>
+            Resumo
+          </a>
         </li>
         <li>
-          <a href="#list" onClick={closeMenu} className={linkClass}>Lista</a>
+          <a href="#highlight" onClick={closeMenu} className={linkClass}>
+            Gastos
+          </a>
         </li>
         <li>
-          <a href="#chart" onClick={closeMenu} className={linkClass}>Gráfico</a>
+          <a href="#list" onClick={closeMenu} className={linkClass}>
+            Lista
+          </a>
+        </li>
+        <li>
+          <a href="#chart" onClick={closeMenu} className={linkClass}>
+            Gráfico
+          </a>
         </li>
       </ul>
     </nav>
-  )
+  );
 }
 
-export default Menu
+export default Menu;
