@@ -10,6 +10,11 @@ import { useState } from 'react';
 
 function App() {
     const [showValues, setShowValues] = useState(false);
+    const summaryCards = [
+  { id: 'recipes', title: 'Receitas Totais', value: 2167, icon: '💰' },
+  { id: 'fixes expanses', title: 'Gastos Fixos', value: 318,icon: '🪙' },
+  { id: '', title: 'Cartão de crédito', value: 676, icon: '💳 ', isHighlighted: true },
+]
 
   return (
     <>
@@ -30,16 +35,20 @@ function App() {
             <button onClick={()=> setShowValues(!showValues)}>{!showValues ? "mostrar": "Esconder"}</button>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
               <div className="col-span-2 md:col-span-1">
-                <SummaryCard title="Receitas Totais" value={1267} hideValue = {!showValues}/>
+                <SummaryCard title={summaryCards[0].title} value={summaryCards[0].value} hideValue = {!showValues}/>
               </div>
 
-              <SummaryCard title="Gastos fixos" value={767} />
+               {summaryCards.filter((_,i)=>i >0).map((card) => (
+                <SummaryCard
+                  key={card.id}
+                  title={card.title}
+                  value={card.value}
+                  icon={card.icon}
+                  isHighlighted={card.isHighlighted}
+                  hideValue = {!showValues}
 
-              <SummaryCard
-                title="Cartao de Crédito"
-                value={317}
-                isHighlighted
-              />
+                />
+              ))}
             </div>
           </Panel>
           <Panel id=" highlight" title="Valor atual" className="md:col-span-2">
