@@ -1,4 +1,4 @@
-function SummaryCard({ title, value, icon=null, isHighlighted = false }) {
+function SummaryCard({ title, value, icon=null, isHighlighted = false , hideValue = false }) {
   return (
     <>
     <article
@@ -10,7 +10,7 @@ function SummaryCard({ title, value, icon=null, isHighlighted = false }) {
         {icon && <span aria-hidden="true">{icon}</span>}
         {title}
       </p>
-      <p className="mt-2 font-heading text-3xl font-bold">{value}</p>
+      {hideValue ? "---":<p className="mt-2 font-heading text-3xl font-bold">{value}</p>}
     </article>
 
    </>

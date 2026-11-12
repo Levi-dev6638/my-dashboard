@@ -6,9 +6,11 @@ import Panel from './components/Panel';
 import InfoRow from './components/InfoRow';
 import StatusBadge from './components/StatusBadge';
 import DetailsToggle from './components/DatailsToggle';
-const areaClass =
-  'min-h-32 rounded-xl border-2 border-dashed border-border bg-surface p-4 text-muted';
+import { useState } from 'react';
+
 function App() {
+    const [showValues, setShowValues] = useState(false);
+
   return (
     <>
       <div className="flex min-h-screen flex-col bg-background text-foreground ">
@@ -25,15 +27,19 @@ function App() {
             title=" Entradas e saidas"
             className="md:col-span-2"
           >
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-              <SummaryCard title="Receitas Totais" value={1267} />
+            <button onClick={()=> setShowValues(!showValues)}>{!showValues ? "mostrar": "Esconder"}</button>
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+              <div className="col-span-2 md:col-span-1">
+                <SummaryCard title="Receitas Totais" value={1267} hideValue = {!showValues}/>
+              </div>
+
               <SummaryCard title="Gastos fixos" value={767} />
+
               <SummaryCard
                 title="Cartao de Crédito"
                 value={317}
                 isHighlighted
               />
-              <SummaryCard title="Valor Final" value="00,00" />
             </div>
           </Panel>
           <Panel id=" highlight" title="Valor atual" className="md:col-span-2">
