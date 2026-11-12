@@ -8,13 +8,64 @@ import StatusBadge from './components/StatusBadge';
 import DetailsToggle from './components/DatailsToggle';
 import { useState } from 'react';
 
-function App() {
-    const [showValues, setShowValues] = useState(false);
-    const summaryCards = [
+const summaryCards = [
   { id: 'recipes', title: 'Receitas Totais', value: 2167, icon: '💰' },
-  { id: 'fixes expanses', title: 'Gastos Fixos', value: 318,icon: '🪙' },
-  { id: '', title: 'Cartão de crédito', value: 676, icon: '💳 ', isHighlighted: true },
-]
+  { id: 'fixes expanses', title: 'Gastos Fixos', value: 318, icon: '🪙' },
+  {
+    id: '',
+    title: 'Cartão de crédito',
+    value: 676,
+    icon: '💳 ',
+    isHighlighted: true,
+  },
+];
+
+const transactions = [
+  {
+    id: 'salary',
+    title: 'Salário',
+    amount: 3500,
+    type: 'income',
+    date: '2026-11-05',
+  },
+  {
+    id: 'freelance',
+    title: 'Projeto Freelancer',
+    amount: 850,
+    type: 'income',
+    date: '2026-11-08',
+  },
+  {
+    id: 'rent',
+    title: 'Aluguel',
+    amount: 1200,
+    type: 'expense',
+    date: '2026-11-10',
+  },
+  {
+    id: 'groceries',
+    title: 'Supermercado',
+    amount: 450,
+    type: 'expense',
+    date: '2026-11-11',
+  },
+  {
+    id: 'internet',
+    title: 'Internet',
+    amount: 100,
+    type: 'expense',
+    date: '2026-11-12',
+  },
+  {
+    id: 'cinema',
+    title: 'Cinema',
+    amount: 65,
+    type: 'expense',
+    date: '2026-11-12',
+  },
+];
+function App() {
+  const [showValues, setShowValues] = useState(false);
 
   return (
     <>
@@ -32,23 +83,30 @@ function App() {
             title=" Entradas e saidas"
             className="md:col-span-2"
           >
-            <button onClick={()=> setShowValues(!showValues)}>{!showValues ? "mostrar": "Esconder"}</button>
+            <button onClick={() => setShowValues(!showValues)}>
+              {!showValues ? 'mostrar' : 'Esconder'}
+            </button>
             <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
               <div className="col-span-2 md:col-span-1">
-                <SummaryCard title={summaryCards[0].title} value={summaryCards[0].value} hideValue = {!showValues}/>
+                <SummaryCard
+                  title={summaryCards[0].title}
+                  value={summaryCards[0].value}
+                  hideValue={!showValues}
+                />
               </div>
 
-               {summaryCards.filter((_,i)=>i >0).map((card) => (
-                <SummaryCard
-                  key={card.id}
-                  title={card.title}
-                  value={card.value}
-                  icon={card.icon}
-                  isHighlighted={card.isHighlighted}
-                  hideValue = {!showValues}
-
-                />
-              ))}
+              {summaryCards
+                .filter((_, i) => i > 0)
+                .map((card) => (
+                  <SummaryCard
+                    key={card.id}
+                    title={card.title}
+                    value={card.value}
+                    icon={card.icon}
+                    isHighlighted={card.isHighlighted}
+                    hideValue={!showValues}
+                  />
+                ))}
             </div>
           </Panel>
           <Panel id=" highlight" title="Valor atual" className="md:col-span-2">
@@ -68,9 +126,39 @@ function App() {
               <p>Falta o último chefe e 3 áreas do mapa.</p>
             </DetailsToggle>
           </Panel>
-          <Panel id="list" title="Maiores gastos" className="md:min-h-80">
-            Maiores gastos
+
+          <Panel id="list" title="Extrato" className="md:min-h-80">
+            <ul className="divide-y divide-border">
+              {transactions.map((transaction) => (
+                <li
+                  key={transaction.id}
+                  className="flex flex-wrap items-center justify-between gap-3 py-4 px-2 transition-colors hover:bg-surface/70 rounded-lg"
+                >
+                  <div className="flex flex-col gap-1">
+                    <p className="font-semibold text-foreground">
+                      {transaction.title}
+                    </p>
+
+                    <p className="text-sm text-muted">{transaction.category}</p>
+
+                    <p className="text-xs text-muted">{transaction.date}</p>
+                  </div>
+
+                  <p
+                    className={`font-bold text-base ${
+                      transaction.type === 'income'
+                        ? 'text-success'
+                        : 'text-danger'
+                    }`}
+                  >
+                    {transaction.type === 'income' ? '+' : '-'} R${' '}
+                    {transaction.amount}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </Panel>
+
           <Panel
             id="chart"
             title="Crescimento do Patrimonio"

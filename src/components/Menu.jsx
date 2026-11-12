@@ -49,7 +49,7 @@ function Menu() {
         </li>
         <li>
           <a href="#list" onClick={closeMenu} className={linkClass}>
-            Lista
+            Extrato
           </a>
         </li>
         <li>
