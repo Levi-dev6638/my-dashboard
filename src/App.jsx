@@ -7,6 +7,7 @@ import InfoRow from './components/InfoRow';
 import StatusBadge from './components/StatusBadge';
 import DetailsToggle from './components/DatailsToggle';
 import { useState } from 'react';
+import ListItem from './components/ListItem';
 
 const summaryCards = [
   { id: 'recipes', title: 'Receitas Totais', value: 2167, icon: '💰' },
@@ -128,33 +129,9 @@ function App() {
           </Panel>
 
           <Panel id="list" title="Extrato" className="md:min-h-80">
-            <ul className="divide-y divide-border">
+            <ul>
               {transactions.map((transaction) => (
-                <li
-                  key={transaction.id}
-                  className="flex flex-wrap items-center justify-between gap-3 py-4 px-2 transition-colors hover:bg-surface/70 rounded-lg"
-                >
-                  <div className="flex flex-col gap-1">
-                    <p className="font-semibold text-foreground">
-                      {transaction.title}
-                    </p>
-
-                    <p className="text-sm text-muted">{transaction.category}</p>
-
-                    <p className="text-xs text-muted">{transaction.date}</p>
-                  </div>
-
-                  <p
-                    className={`font-bold text-base ${
-                      transaction.type === 'income'
-                        ? 'text-success'
-                        : 'text-danger'
-                    }`}
-                  >
-                    {transaction.type === 'income' ? '+' : '-'} R${' '}
-                    {transaction.amount}
-                  </p>
-                </li>
+                <ListItem key={transaction.id} title={transaction.title} category={transaction.category}   date={transaction.date}  type={transaction.type}  amount={transaction.amount} />
               ))}
             </ul>
           </Panel>
