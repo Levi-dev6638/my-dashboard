@@ -9,6 +9,12 @@ import DetailsToggle from './components/DatailsToggle';
 import { useState } from 'react';
 import ListItem from './components/ListItem';
 
+const filterOptions = [
+  { id: 'all', label: 'Todos' },
+  { id: 'Despesas', label: 'Despesas' },
+  { id: 'Receitas', label: 'Receitas' },
+];
+
 const summaryCards = [
   { id: 'recipes', title: 'Receitas Totais', value: 2167, icon: '💰' },
   { id: 'fixes expanses', title: 'Gastos Fixos', value: 318, icon: '🪙' },
@@ -28,6 +34,7 @@ const transactions = [
     amount: 3500,
     type: 'income',
     date: '2026-11-05',
+    state: true
   },
   {
     id: 'freelance',
@@ -35,6 +42,7 @@ const transactions = [
     amount: 850,
     type: 'income',
     date: '2026-11-08',
+    state: true
   },
   {
     id: 'rent',
@@ -49,6 +57,7 @@ const transactions = [
     amount: 450,
     type: 'expense',
     date: '2026-11-11',
+
   },
   {
     id: 'internet',
@@ -63,10 +72,18 @@ const transactions = [
     amount: 65,
     type: 'expense',
     date: '2026-11-12',
+
   },
 ];
 function App() {
   const [showValues, setShowValues] = useState(false);
+  const [statusFilter, setStatusFilter] = useState('all');
+
+  const visibleTransactions = transactions.filter((transaction) => {
+    if (statusFilter === 'Receitas') return transaction.state;
+    if (statusFilter === 'Despesas') return !transaction.state;
+    return true;
+  });
 
   return (
     <>
@@ -129,11 +146,40 @@ function App() {
           </Panel>
 
           <Panel id="list" title="Extrato" className="md:min-h-80">
-            <ul>
-              {transactions.map((transaction) => (
-                <ListItem key={transaction.id} title={transaction.title} category={transaction.category}   date={transaction.date}  type={transaction.type}  amount={transaction.amount} />
+            <div className="mb-4 flex flex-wrap gap-2">
+              {filterOptions.map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => setStatusFilter(option.id)}
+                  aria-pressed={statusFilter === option.id}
+                  className={
+                    statusFilter === option.id
+                      ? 'rounded-full border border-primary bg-primary px-3 py-1 text-sm font-bold text-background'
+                      : 'rounded-full border border-border px-3 py-1 text-sm font-bold text-muted hover:border-primary'
+                  }
+                >
+                  {option.label}
+                </button>
               ))}
-            </ul>
+            </div>
+            {visibleTransactions.length === 0 ? (
+              <p className="text-muted">Nenhum jogo na lista ainda.</p>
+            ) : (
+              <ul>
+                {visibleTransactions.map((transaction) => (
+                  <ListItem
+                    key={transaction.id}
+                    title={transaction.title}
+                    category={transaction.category}
+                    date={transaction.date}
+                    type={transaction.type}
+                    amount={transaction.amount}
+                    isFinally={transaction.state}
+                  />
+                ))}
+              </ul>
+            )}
           </Panel>
 
           <Panel
