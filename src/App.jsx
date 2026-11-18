@@ -34,7 +34,7 @@ const transactions = [
     amount: 3500,
     type: 'income',
     date: '2026-11-05',
-    state: true
+    state: true,
   },
   {
     id: 'freelance',
@@ -42,7 +42,7 @@ const transactions = [
     amount: 850,
     type: 'income',
     date: '2026-11-08',
-    state: true
+    state: true,
   },
   {
     id: 'rent',
@@ -57,7 +57,6 @@ const transactions = [
     amount: 450,
     type: 'expense',
     date: '2026-11-11',
-
   },
   {
     id: 'internet',
@@ -72,17 +71,19 @@ const transactions = [
     amount: 65,
     type: 'expense',
     date: '2026-11-12',
-
   },
 ];
 function App() {
   const [showValues, setShowValues] = useState(false);
   const [statusFilter, setStatusFilter] = useState('all');
+  const [search, setSearch] = useState('');
+  const searchTerm = search.trim().toLowerCase();
 
   const visibleTransactions = transactions.filter((transaction) => {
-    if (statusFilter === 'Receitas') return transaction.state;
-    if (statusFilter === 'Despesas') return !transaction.state;
-    return true;
+    const matchesSearch = transaction.title.toLowerCase().includes(searchTerm);
+    if (statusFilter === 'Receitas') return transaction.state && matchesSearch;
+    if (statusFilter === 'Despesas') return !transaction.state && matchesSearch;
+    return matchesSearch;
   });
 
   return (
@@ -146,6 +147,18 @@ function App() {
           </Panel>
 
           <Panel id="list" title="Extrato" className="md:min-h-80">
+            <label htmlFor="game-search" className="text-sm text-muted">
+              Buscar pelo nome
+            </label>
+            <input
+              id="game-search"
+              type="search"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder="Ex.: hades"
+              className="mt-1 mb-3 w-full rounded-lg border border-border bg-background
+    px-3 py-2 focus:border-primary focus:outline-none"
+            />
             <div className="mb-4 flex flex-wrap gap-2">
               {filterOptions.map((option) => (
                 <button
