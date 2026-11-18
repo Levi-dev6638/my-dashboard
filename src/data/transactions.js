@@ -1,0 +1,46 @@
+export const transactions = [
+  {
+    id: 'salary',
+    title: 'Salário',
+    amount: 3500,
+    type: 'income',
+    date: '2026-11-05',
+    state: true,
+  },
+  {
+    id: 'freelance',
+    title: 'Projeto Freelancer',
+    amount: 850,
+    type: 'income',
+    date: '2026-11-08',
+    state: true,
+  },
+  {
+    id: 'rent',
+    title: 'Aluguel',
+    amount: 1200,
+    type: 'expense',
+    date: '2026-11-10',
+  },
+  {
+    id: 'groceries',
+    title: 'Supermercado',
+    amount: 450,
+    type: 'expense',
+    date: '2026-11-11',
+  },
+  {
+    id: 'internet',
+    title: 'Internet',
+    amount: 100,
+    type: 'expense',
+    date: '2026-11-12',
+  },
+  {
+    id: 'cinema',
+    title: 'Cinema',
+    amount: 65,
+    type: 'expense',
+    date: '2026-11-12',
+  },
+];

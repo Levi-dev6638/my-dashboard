@@ -8,6 +8,7 @@ import StatusBadge from './components/StatusBadge';
 import DetailsToggle from './components/DatailsToggle';
 import { useState } from 'react';
 import ListItem from './components/ListItem';
+import {transactions} from './data/transactions.js'
 
 const filterOptions = [
   { id: 'all', label: 'Todos' },
@@ -15,8 +16,19 @@ const filterOptions = [
   { id: 'Receitas', label: 'Receitas' },
 ];
 
-const summaryCards = [
-  { id: 'recipes', title: 'Receitas Totais', value: 2167, icon: '💰' },
+
+
+
+function App() {
+  const [showValues, setShowValues] = useState(false);
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [search, setSearch] = useState('');
+  const searchTerm = search.trim().toLowerCase();
+  const totalReceitas = transactions.reduce((total, receitas) => total + receitas.amount, 0)
+ 
+
+  const summaryCards = [
+  { id: 'recipes', title: 'Receitas Totais', value: totalReceitas , icon: '💰' },
   { id: 'fixes expanses', title: 'Gastos Fixos', value: 318, icon: '🪙' },
   {
     id: '',
@@ -26,58 +38,6 @@ const summaryCards = [
     isHighlighted: true,
   },
 ];
-
-const transactions = [
-  {
-    id: 'salary',
-    title: 'Salário',
-    amount: 3500,
-    type: 'income',
-    date: '2026-11-05',
-    state: true,
-  },
-  {
-    id: 'freelance',
-    title: 'Projeto Freelancer',
-    amount: 850,
-    type: 'income',
-    date: '2026-11-08',
-    state: true,
-  },
-  {
-    id: 'rent',
-    title: 'Aluguel',
-    amount: 1200,
-    type: 'expense',
-    date: '2026-11-10',
-  },
-  {
-    id: 'groceries',
-    title: 'Supermercado',
-    amount: 450,
-    type: 'expense',
-    date: '2026-11-11',
-  },
-  {
-    id: 'internet',
-    title: 'Internet',
-    amount: 100,
-    type: 'expense',
-    date: '2026-11-12',
-  },
-  {
-    id: 'cinema',
-    title: 'Cinema',
-    amount: 65,
-    type: 'expense',
-    date: '2026-11-12',
-  },
-];
-function App() {
-  const [showValues, setShowValues] = useState(false);
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [search, setSearch] = useState('');
-  const searchTerm = search.trim().toLowerCase();
 
   const visibleTransactions = transactions.filter((transaction) => {
     const matchesSearch = transaction.title.toLowerCase().includes(searchTerm);
