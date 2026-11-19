@@ -36,3 +36,4 @@ export const investments = [
     date: '2026-11-18',
   },
 ];
+

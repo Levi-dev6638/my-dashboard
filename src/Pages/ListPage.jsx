@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { transactions } from '../data/transactions';
 import Panel from '../components/Panel';
 import ListItem from '../components/ListItem';
+import { useFinances } from '../context/FinancesContext'
+
 
 function ListPage() {
   const filterOptions = [
@@ -12,6 +13,7 @@ function ListPage() {
   const [statusFilter, setStatusFilter] = useState('all');
   const [search, setSearch] = useState('');
   const searchTerm = search.trim().toLowerCase();
+  const { transactions } = useFinances()
 
 
 

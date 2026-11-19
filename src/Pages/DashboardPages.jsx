@@ -4,22 +4,24 @@ import InfoRow from '../components/InfoRow';
 import Panel from '../components/Panel';
 import StatusBadge from '../components/StatusBadge';
 import SummaryCard from '../components/SummaryCard';
-import { transactions } from '../data/transactions';
 import ListItem from '../components/ListItem';
 import { Link } from 'react-router-dom';
-import { investments } from '../data/investment';
-import InvestmentItem from '../components/InvestmentItem';
 import InvestmentChart from '../components/InvestmentChart';
+import { useFinances } from '../context/FinancesContext'
 
-const firstTransactions = transactions.slice(0, 3);
-const firstInvestments = investments.slice(0, 3);
+
+
+
 
 function DashboardPage() {
+    const { transactions } = useFinances()
   const [showValues, setShowValues] = useState(false);
   const totalReceitas = transactions.reduce(
     (total, receitas) => total + receitas.amount,
     0,
   );
+const firstTransactions = transactions.slice(0, 3);
+
 
   const summaryCards = [
     {
