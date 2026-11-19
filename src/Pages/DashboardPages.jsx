@@ -7,8 +7,12 @@ import SummaryCard from '../components/SummaryCard';
 import { transactions } from '../data/transactions';
 import ListItem from '../components/ListItem';
 import { Link } from 'react-router-dom';
+import { investments } from '../data/investment';
+import InvestmentItem from '../components/InvestmentItem';
+import InvestmentChart from '../components/InvestmentChart';
 
 const firstTransactions = transactions.slice(0, 3);
+const firstInvestments = investments.slice(0, 3);
 
 function DashboardPage() {
   const [showValues, setShowValues] = useState(false);
@@ -102,12 +106,13 @@ function DashboardPage() {
           ver todas as {transactions.length} receitas
         </Link>
       </Panel>
+
       <Panel
         id="chart"
-        title="Crescimento do Patrimonio"
-        className="md:min-h-80"
+        title="Crescimento do Patrimônio"
+        className="md:col-span-1 min-w-0"
       >
-        Crescimento do Patrimonio
+        <InvestmentChart />
       </Panel>
     </>
   );
