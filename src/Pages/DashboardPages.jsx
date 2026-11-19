@@ -12,9 +12,6 @@ const firstTransactions = transactions.slice(0, 3);
 
 function DashboardPage() {
   const [showValues, setShowValues] = useState(false);
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [search, setSearch] = useState('');
-  const searchTerm = search.trim().toLowerCase();
   const totalReceitas = transactions.reduce(
     (total, receitas) => total + receitas.amount,
     0,

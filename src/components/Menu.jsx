@@ -1,7 +1,11 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
-const linkClass =
-  'block rounded-lg px-3 py-2 hover:bg-background hover:text-primary';
+function linkClass({ isActive }) {
+  return isActive
+    ? 'block rounded-lg bg-primary px-3 py-2 font-bold text-background'
+    : 'block rounded-lg px-3 py-2 hover:bg-background hover:text-primary';
+}
 
 function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,24 +42,14 @@ function Menu() {
         className={`mt-3 flex-col gap-1 xl:mt-0 xl:flex ${isOpen ? 'flex' : 'hidden'}`}
       >
         <li>
-          <a href="#summary" onClick={closeMenu} className={linkClass}>
-            Resumo
-          </a>
+          <NavLink to="/" end onClick={closeMenu} className={linkClass}>
+            Painel
+          </NavLink>
         </li>
         <li>
-          <a href="#highlight" onClick={closeMenu} className={linkClass}>
-            Gastos
-          </a>
-        </li>
-        <li>
-          <a href="#list" onClick={closeMenu} className={linkClass}>
-            Extrato
-          </a>
-        </li>
-        <li>
-          <a href="#chart" onClick={closeMenu} className={linkClass}>
-            Gráfico
-          </a>
+          <NavLink to="/lista" onClick={closeMenu} className={linkClass}>
+            Meus jogos
+          </NavLink>
         </li>
       </ul>
     </nav>
