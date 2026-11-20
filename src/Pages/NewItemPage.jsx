@@ -1,9 +1,17 @@
 import Panel from '../components/Panel.jsx'
 import ItemForm from '../components/ItemForm.jsx'
+import { useFinances } from '../context/FinancesContext.js'
+import { useNavigate } from 'react-router-dom'
 
-function NewItemPage() {
+
+  function NewItemPage() {
+  const { addGame } = useFinances()
+  const navigate = useNavigate()
+
   function handleSave(values) {
-    console.log(values)
+    const newGame = { id: String(Date.now()), ...values }
+    addGame(newGame)
+    navigate('/lista')
   }
 
   return (
