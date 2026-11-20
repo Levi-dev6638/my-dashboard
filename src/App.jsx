@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Menu from './components/Menu';
 import ListPage from './Pages/ListPage';
 import DashboardPage from './Pages/DashboardPages';
+import NewItemPage from './Pages/NewItemPage';
 
 function App() {
 
@@ -14,8 +15,9 @@ function App() {
             <Menu />
             <Routes>
               <Route path="/" element={<DashboardPage />} />
+              <Route path="/novo" element={<NewItemPage />} />
               <Route path="/lista" element={<ListPage />} />
-              
+
             </Routes>
           </main>
 

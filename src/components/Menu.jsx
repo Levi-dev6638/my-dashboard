@@ -51,6 +51,11 @@ function Menu() {
             Meus jogos
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/novo" onClick={closeMenu} className={linkClass}>
+            Novo jogo
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
